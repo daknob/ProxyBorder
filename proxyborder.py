@@ -7,6 +7,7 @@ import requests
 import threading
 from random import choice
 import sys
+from time import sleep
 
 AlwaysOn = [
 	"http://www.google.com",
@@ -79,3 +80,7 @@ with open(Input, "r") as proxies:
 			threading.Thread(target=checkProxy, args=(p[0], p[1])).start()
 		except:
 			print("Invalid Line:\t" + proxy)
+
+while(threading.activeCount() != 1):
+	print("Waiting for " + str(threading.activeCount()) + " threads to finish.")
+	sleep(1)
